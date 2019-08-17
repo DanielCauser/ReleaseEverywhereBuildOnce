@@ -4,8 +4,23 @@
              x:Class="SampleApp.Views.MainPage"
              Title="{Binding Title}">
 
-    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-        <Label Text="Welcome to Xamarin Forms and Prism!" />
-    </StackLayout>
+    <StackLayout HorizontalOptions="CenterAndExpand"
+                 VerticalOptions="CenterAndExpand">
+        <Label LineBreakMode="WordWrap">
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span Text="Environment: "
+                          TextColor="Red"
+                          FontAttributes="Bold"
+                          FontSize="Medium"/>
 
+                    <!--<Span Text="&#x0a;"/>-->
+                    
+                    <Span Text="{Binding EnvironmentConfig}"
+                          FontAttributes="Italic"
+                          FontSize="Medium" />
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+    </StackLayout>
 </ContentPage>
