@@ -1,4 +1,5 @@
-﻿using Prism.Commands;
+﻿using Newtonsoft.Json;
+using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
 using SampleApp.Config;
@@ -25,9 +26,20 @@ namespace SampleApp.ViewModels
 
         private async Task GetInfo()
         {
-            var url = Constants.EndPoint;
-            EnvironmentConfig = url;
-            await Task.Delay(10000);
+            var response = await HttpClientInstance.GetAsync(Constants.EndPoint)
+                                                                   .ConfigureAwait(false);
+
+            if (response.IsSuccessStatusCode)
+            {
+                string serialized = await response.Content.ReadAsStringAsync();
+                Environment result = await Task.Run(() => JsonConvert.DeserializeObject<Environment>(serialized))
+                                           .ConfigureAwait(false);
+
+                EnvironmentConfig = result.Name;
+                return;
+            }
+
+            EnvironmentConfig = "Failed";
         }
 
         public DelegateCommand GetEnvironmentInfoCommand { get; private set; }
@@ -38,5 +50,10 @@ namespace SampleApp.ViewModels
             get { return _environmentConfig; }
             set { SetProperty(ref _environmentConfig, value); }
         }
+    }
+
+    public class Environment
+    {
+        public string Name { get; set; }
     }
 }
