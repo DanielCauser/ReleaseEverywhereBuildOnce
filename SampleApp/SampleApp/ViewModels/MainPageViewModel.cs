@@ -15,14 +15,13 @@ namespace SampleApp.ViewModels
             : base(navigationService)
         {
             Title = "Main Page";
-            EnvironmentConfig = "Production";
             GetEnvironmentInfoCommand = new DelegateCommand(async () => await GetInfo());
         }
 
-        private Task GetInfo()
+        private async Task GetInfo()
         {
             EnvironmentConfig = "Prod";
-            return Task.CompletedTask;
+            await Task.Delay(10000);
         }
 
         public DelegateCommand GetEnvironmentInfoCommand { get; private set; }

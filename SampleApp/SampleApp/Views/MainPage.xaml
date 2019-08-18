@@ -12,15 +12,19 @@
                     <Span Text="Environment: "
                           TextColor="Red"
                           FontAttributes="Bold"
-                          FontSize="Medium"/>
+                          FontSize="Large"/>
 
                     <!--<Span Text="&#x0a;"/>-->
                     
                     <Span Text="{Binding EnvironmentConfig}"
                           FontAttributes="Italic"
-                          FontSize="Medium" />
+                          FontSize="Large" />
                 </FormattedString>
             </Label.FormattedText>
         </Label>
+
+        <Button Text="Get Current Environment"
+                FontSize="Medium"
+                Command="{Binding GetEnvironmentInfoCommand}"/>
     </StackLayout>
 </ContentPage>
