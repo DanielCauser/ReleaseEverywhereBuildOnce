@@ -198,5 +198,22 @@
       <Name>SampleApp</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\SampleApp\Config\appsettings.json">
+      <Link>Assets\appsettings.json</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\SampleApp\Config\appsettings.dev.json">
+      <Link>Assets\appsettings.dev.json</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\SampleApp\Config\appsettings.test.json">
+      <Link>Assets\appsettings.test.json</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
