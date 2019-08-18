@@ -4,14 +4,19 @@ using System.IO;
 using System.Reflection;
 using Newtonsoft.Json.Linq;
 
-namespace SampleApp
+namespace SampleApp.Config
 {
     public class AppSettingsManager
     {
         private static AppSettingsManager _instance;
         private JObject _secrets;
-        private const string Namespace = "SampleApp";
+        private const string Namespace = "SampleApp.Config";
+#if DEBUG
+        private const string FileName = "appsettings.dev.json";
+#else
         private const string FileName = "appsettings.json";
+#endif
+
 
         private AppSettingsManager()
         {

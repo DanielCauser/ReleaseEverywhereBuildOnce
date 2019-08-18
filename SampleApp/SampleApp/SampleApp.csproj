@@ -13,4 +13,20 @@
   <ItemGroup>
     <Folder Include="Config\" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="Config\appsettings.json" />
+    <None Remove="Config\appsettings.dev.json" />
+    <None Remove="Config\appsettings.test.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Config\appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Config\appsettings.dev.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Config\appsettings.test.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
 </Project>
