@@ -33,4 +33,12 @@ steps:
     TargetFolder: 'Drop'
     OverWrite: true
 
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: './Scripts'
+    Contents: '**'
+    TargetFolder: 'Drop'
+    OverWrite: true
+    flattenFolders: true
+
 
