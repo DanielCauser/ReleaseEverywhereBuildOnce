@@ -53,7 +53,13 @@
     <AndroidLinkTool>r8</AndroidLinkTool>
     <AndroidSupportedAbis>x86;x86_64</AndroidSupportedAbis>
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
-    <AndroidLinkSkip>Prism.Forms;Prism.Unity.Forms;Prism.Navigation.PageNavigationService</AndroidLinkSkip>
+    <linker>
+      <assembly fullname="Prism.Forms">
+        <type fullname="Prism.Navigation.PageNavigationService">
+          <method name="ConfigureTabbedPage" />
+        </type>
+      </assembly>
+    </linker>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
