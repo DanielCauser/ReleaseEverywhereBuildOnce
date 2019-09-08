@@ -23,5 +23,14 @@ steps:
 - task: XamarinAndroid@1
   inputs:
     projectFile: '**/*droid*.csproj'
-    outputDirectory: '$(outputDirectory)'
+    outputDirectory: 
     configuration: '$(buildConfiguration)'
+
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '''$(outputDirectory)'''
+    Contents: '**'
+    TargetFolder: 'Drop'
+    OverWrite: true
+
+
