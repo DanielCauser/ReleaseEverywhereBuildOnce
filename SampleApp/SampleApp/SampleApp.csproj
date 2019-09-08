@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <Folder Include="Config\" />
+    <Folder Include="BuildScripts\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Config\appsettings.json" />
