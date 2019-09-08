@@ -53,7 +53,7 @@
     <AndroidLinkTool>r8</AndroidLinkTool>
     <AndroidSupportedAbis>x86;x86_64</AndroidSupportedAbis>
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
-    <AndroidLinkSkip>Prism.Forms;Prism.Unity.Forms</AndroidLinkSkip>
+    <AndroidLinkSkip>Prism.Forms;Prism.Unity.Forms;Prism.Navigation.PageNavigationService</AndroidLinkSkip>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
