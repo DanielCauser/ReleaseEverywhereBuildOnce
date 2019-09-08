@@ -28,7 +28,7 @@ namespace SampleApp.ViewModels
         {
             var response = await HttpClientInstance.GetAsync(Constants.EndPoint)
                                                                    .ConfigureAwait(false);
-
+    
             if (response.IsSuccessStatusCode)
             {
                 string serialized = await response.Content.ReadAsStringAsync();
