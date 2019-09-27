@@ -28,16 +28,16 @@ steps:
 
 - task: CopyFiles@2
   inputs:
-    SourceFolder: '''$(outputDirectory)'''
+    SourceFolder: '$(build.binariesDirectory)/$(buildConfiguration)'
     Contents: '**'
-    TargetFolder: 'Drop'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
     OverWrite: true
 
 - task: CopyFiles@2
   inputs:
     SourceFolder: './Scripts'
     Contents: '**'
-    TargetFolder: 'Drop'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
     OverWrite: true
     flattenFolders: true
 
