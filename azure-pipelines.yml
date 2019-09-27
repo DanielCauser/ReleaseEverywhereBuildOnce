@@ -28,7 +28,7 @@ steps:
 
 - task: CopyFiles@2
   inputs:
-    SourceFolder: '$(build.binariesDirectory)/$(buildConfiguration)/com.causerexception.releaseeverywhere.apk'
+    SourceFolder: '$(build.binariesDirectory)/com.causerexception.releaseeverywhere.apk'
     Contents: '**'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
     OverWrite: true
