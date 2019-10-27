@@ -67,9 +67,9 @@ steps:
 - task: CopyFiles@2
   displayName: 'Copy APK to: $(Build.ArtifactStagingDirectory)'
   inputs:
-    SourceFolder: '$(build.binariesDirectory)/*.apk'
-    Contents: 'com.causerexception.releaseeverywhere.apk'
-    TargetFolder: '$(build.artifactstagingdirectory)'
+    SourceFolder: '$(build.binariesdirectory)/Release'
+    Contents: '**/*.apk'
+    TargetFolder: '$(build.artifactstagingdirectory)/Release/'
     OverWrite: true
 
 - task: PublishBuildArtifacts@1
