@@ -48,16 +48,16 @@ steps:
 # Copy APK
 - task: CopyFiles@2
   inputs:
-    SourceFolder: '$(build.binariesdirectory)/Release'
+    SourceFolder: '$(build.binariesdirectory)'
     Contents: '**/*.apk'
     TargetFolder: '$(build.artifactStagingDirectory)/Drop'
     OverWrite: true
 
-# Keystore
+# Copy Keystore
 - task: CopyFiles@2
   inputs:
-    SourceFolder: '$$(Build.SourcesDirectory)/Scripts/KeyStore/com.causerexception.releaseeverywhere.keystore'
-    Contents: '**/*.apk'
+    SourceFolder: '$$(Build.SourcesDirectory)/Scripts/KeyStore'
+    Contents: 'com.causerexception.releaseeverywhere.keystore'
     TargetFolder: '$(build.artifactStagingDirectory)/Drop'
     OverWrite: true
 
