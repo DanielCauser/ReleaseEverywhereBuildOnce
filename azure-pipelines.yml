@@ -26,10 +26,14 @@ steps:
     outputDirectory: 
     configuration: '$(buildConfiguration)'
 
+- task: DownloadSecureFile@1
+  inputs:
+    secureFile: 'com.causerexception.releaseeverywhere.keystore'
+
 - task: AndroidSigning@3
   inputs:
     apkFiles: '**/*.apk'
-    apksignerKeystoreFile: '/Scripts/KeyStore/com.causerexception.releaseeverywhere.keystore'
+    apksignerKeystoreFile: 'com.causerexception.releaseeverywhere.keystore'
     apksignerKeystorePassword: '%APKPASSWORD%'
     apksignerKeystoreAlias: 'ReleaseEverywhereBuildOnce'
     apksignerKeyPassword: '%APKPASSWORD%'
