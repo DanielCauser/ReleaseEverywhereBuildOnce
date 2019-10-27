@@ -56,7 +56,7 @@ steps:
 #Copy Scripts
 - task: CopyFiles@2
   inputs:
-    SourceFolder: '$$(Build.SourcesDirectory)/Scripts/'
+    SourceFolder: '$(Build.SourcesDirectory)/Scripts/'
     Contents: 'Change_Config_APK.sh'
     TargetFolder: '$(build.artifactStagingDirectory)/Drop'
     OverWrite: true
