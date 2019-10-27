@@ -30,7 +30,7 @@ steps:
 - task: XamarinAndroid@1
   inputs:
     projectFile: '**/*droid*.csproj'
-    outputDirectory: '$(build.binariesDirectory)'
+    outputDirectory: '$(build.binariesdirectory)/Release'
     configuration: '$(buildConfiguration)'
 
 - task: DownloadSecureFile@1
