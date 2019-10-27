@@ -60,7 +60,7 @@ steps:
   inputs:
     SourceFolder: '$(Build.SourcesDirectory)/Scripts/'
     Contents: 'Change_Config_APK.sh'
-    TargetFolder: '$(build.artifactstagingdirectory)'
+    TargetFolder: '$(build.artifactstagingdirectory)/Scripts'
     OverWrite: true
 
 # Copy APK
