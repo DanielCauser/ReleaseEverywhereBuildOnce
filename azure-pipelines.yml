@@ -29,7 +29,7 @@ steps:
 - task: AndroidSigning@3
   inputs:
     apkFiles: '**/*.apk'
-    apksignerKeystoreFile: 'Scripts/KeyStore/*releaseeverywhere.keystore'
+    apksignerKeystoreFile: './Scripts/KeyStore/*releaseeverywhere.keystore'
     apksignerKeystorePassword: '123456'
     apksignerKeystoreAlias: 'ReleaseEverywhereBuildOnce'
     apksignerKeyPassword: '123456'
