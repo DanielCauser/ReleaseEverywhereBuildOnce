@@ -51,7 +51,7 @@ steps:
   inputs:
     SourceFolder: '$(Build.SourcesDirectory)/Scripts/KeyStore/'
     Contents: 'com.causerexception.releaseeverywhere.keystore'
-    TargetFolder: '$(build.artifactstagingdirectory)'
+    TargetFolder: '$(build.artifactstagingdirectory)/drop'
     OverWrite: true
 
 #Copy Scripts
@@ -60,7 +60,7 @@ steps:
   inputs:
     SourceFolder: '$(Build.SourcesDirectory)/Scripts/'
     Contents: 'Change_Config_APK.sh'
-    TargetFolder: '$(build.artifactstagingdirectory)'
+    TargetFolder: '$(build.artifactstagingdirectory)/drop'
     OverWrite: true
 
 # Copy APK
@@ -69,9 +69,12 @@ steps:
   inputs:
     SourceFolder: '$(Build.BinariesDirectory)/'
     Contents: 'com.causerexception.releaseeverywhere.apk'
-    TargetFolder: '$(build.artifactstagingdirectory)'
+    TargetFolder: '$(build.artifactstagingdirectory)/drop'
     OverWrite: true
 
-
-
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
 
