@@ -39,46 +39,46 @@ keepFile="$envConfig.keep"
 
 cd apk
 
-echo "Rename $envConfig to $keepFile"
-mv "Config/$envConfig" "Config/$keepFile"
+# echo "Rename $envConfig to $keepFile"
+# mv "Config/$envConfig" "Config/$keepFile"
 
-echo "Remove .config files"
-rm Config/*.config
+# echo "Remove .config files"
+# rm Config/*.config
 
-echo "Rename .keep to  app.config"
-mv "Config/$keepFile" "Config/app.config"
+# echo "Rename .keep to  app.config"
+# mv "Config/$keepFile" "Config/app.config"
 
-if [[ ${playStoreRelease} != 'true' ]] ; then
-    echo "Rename app for environment"
-    friendlyEnvironmentName=$(echo ${envName} | tr -s '[:space:]-[:space:]' '_' | tr '[:space:]' '_' | tr '[:upper:]' '[:lower:]' | sed -e 's/_*$//')
+# if [[ ${playStoreRelease} != 'true' ]] ; then
+#     echo "Rename app for environment"
+#     friendlyEnvironmentName=$(echo ${envName} | tr -s '[:space:]-[:space:]' '_' | tr '[:space:]' '_' | tr '[:upper:]' '[:lower:]' | sed -e 's/_*$//')
 
-    oldPackageName=$(xml sel -t -v "/manifest/@package" AndroidManifest.xml)
+#     oldPackageName=$(xml sel -t -v "/manifest/@package" AndroidManifest.xml)
 
-    newPackageName="$(xml sel -t -v "/manifest/@package" AndroidManifest.xml).${friendlyEnvironmentName}"
-    echo "    rename package to [${newPackageName}]"
-    xml ed --inplace -u "/manifest/@package" -v "${newPackageName}" AndroidManifest.xml
+#     newPackageName="$(xml sel -t -v "/manifest/@package" AndroidManifest.xml).${friendlyEnvironmentName}"
+#     echo "    rename package to [${newPackageName}]"
+#     xml ed --inplace -u "/manifest/@package" -v "${newPackageName}" AndroidManifest.xml
 
-    oldAuthorityName=$(xml sel -t -v "/manifest/application/provider[1]/@android:authorities" AndroidManifest.xml)
-    newAuthorityName="${newPackageName}.fileprovider"
-    echo "    rename first authority to [${newAuthorityName}]"
-    xml ed --inplace -u "/manifest/application/provider[1]/@android:authorities" -v "${newAuthorityName}" AndroidManifest.xml
+#     oldAuthorityName=$(xml sel -t -v "/manifest/application/provider[1]/@android:authorities" AndroidManifest.xml)
+#     newAuthorityName="${newPackageName}.fileprovider"
+#     echo "    rename first authority to [${newAuthorityName}]"
+#     xml ed --inplace -u "/manifest/application/provider[1]/@android:authorities" -v "${newAuthorityName}" AndroidManifest.xml
 
-    newLabel="$(xml sel -t -v "/resources/string[@name='app_name']" res/values/strings.xml) ${envName}"
-    echo "    rename android:label to [${newLabel}]"
-    xml ed --inplace -u "/resources/string[@name='app_name']" -v "${newLabel}" res/values/strings.xml  
-fi
+#     newLabel="$(xml sel -t -v "/resources/string[@name='app_name']" res/values/strings.xml) ${envName}"
+#     echo "    rename android:label to [${newLabel}]"
+#     xml ed --inplace -u "/resources/string[@name='app_name']" -v "${newLabel}" res/values/strings.xml  
+# fi
 
-unalignedPath="$apkPath.unaligned"
-unsignedPath="$apkPath.unsigned"
+# unalignedPath="$apkPath.unaligned"
+# unsignedPath="$apkPath.unsigned"
 
-cd ..
+# cd ..
 
-echo "Repackage APK to $unsignedPath"
-apktool b apk -o $unsignedPath
+# echo "Repackage APK to $unsignedPath"
+# apktool b apk -o $unsignedPath
 
-echo "Sign APK"
-jarsigner -keystore $keystorePath -storepass $keystorePass -keypass $keystorePass -verbose -sigalg MD5withRSA -digestalg SHA1 -signedjar $unalignedPath $unsignedPath $keyAlias
-jarsigner -verify -verbose -certs $unalignedPath
+# echo "Sign APK"
+# jarsigner -keystore $keystorePath -storepass $keystorePass -keypass $keystorePass -verbose -sigalg MD5withRSA -digestalg SHA1 -signedjar $unalignedPath $unsignedPath $keyAlias
+# jarsigner -verify -verbose -certs $unalignedPath
 
-echo "Zipalign APK"
-$ANDROID_HOME/build-tools/27.0.3/zipalign -f -v 4 $unalignedPath $apkPath
+# echo "Zipalign APK"
+# $ANDROID_HOME/build-tools/27.0.3/zipalign -f -v 4 $unalignedPath $apkPath
