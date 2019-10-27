@@ -26,19 +26,19 @@ steps:
     outputDirectory: 
     configuration: '$(buildConfiguration)'
 
-- task: CopyFiles@2
+- task: AndroidSigning@3
   inputs:
-    SourceFolder: '$(build.binariesDirectory)/com.causerexception.releaseeverywhere.apk'
-    Contents: '**'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
-    OverWrite: true
+    apkFiles: '**/*.apk'
+    apksignerKeystoreFile: 'Scripts/KeyStore/*releaseeverywhere.keystore'
+    apksignerKeystorePassword: '123456'
+    apksignerKeystoreAlias: 'ReleaseEverywhereBuildOnce'
+    apksignerKeyPassword: '123456'
 
-- task: CopyFiles@2
+- task: CopyAPKs@1
   inputs:
-    SourceFolder: './Scripts'
-    Contents: '**'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    SourceFolder: '$(Build.SourcesDirectory)'
+    Contents: '**/*.apk'
+    TargetFolder: '$(build.artifactStagingDirectory)'
     OverWrite: true
-    flattenFolders: true
 
 
