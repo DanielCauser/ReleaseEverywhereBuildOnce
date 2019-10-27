@@ -51,12 +51,17 @@ mv "Config/$keepFile" "Config/app.config"
 if [[ ${playStoreRelease} != 'true' ]] ; then
     echo "Rename app for environment"
     friendlyEnvironmentName=$(echo ${envName} | tr -s '[:space:]-[:space:]' '_' | tr '[:space:]' '_' | tr '[:upper:]' '[:lower:]' | sed -e 's/_*$//')
-    
+
     oldPackageName=$(xml sel -t -v "/manifest/@package" AndroidManifest.xml)
 
     newPackageName="$(xml sel -t -v "/manifest/@package" AndroidManifest.xml).${friendlyEnvironmentName}"
     echo "    rename package to [${newPackageName}]"
     xml ed --inplace -u "/manifest/@package" -v "${newPackageName}" AndroidManifest.xml
+
+    oldAuthorityName=$(xml sel -t -v "/manifest/application/provider[1]/@android:authorities" AndroidManifest.xml)
+    newAuthorityName="${newPackageName}.fileprovider"
+    echo "    rename first authority to [${newAuthorityName}]"
+    xml ed --inplace -u "/manifest/application/provider[1]/@android:authorities" -v "${newAuthorityName}" AndroidManifest.xml
 
     newLabel="$(xml sel -t -v "/resources/string[@name='app_name']" res/values/strings.xml) ${envName}"
     echo "    rename android:label to [${newLabel}]"
