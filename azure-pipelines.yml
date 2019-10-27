@@ -20,6 +20,8 @@ steps:
   inputs:
     restoreSolution: '**/*.sln'
 
+
+
 - task: XamarinAndroid@1
   inputs:
     projectFile: '**/*droid*.csproj'
@@ -29,6 +31,21 @@ steps:
 - task: DownloadSecureFile@1
   inputs:
     secureFile: 'com.causerexception.releaseeverywhere.keystore'
+
+# Version Android Manifest
+# Description - Applies a version to an Android Manifest via the versionCode property based on the build number.
+- task: VersionAndroidManifest
+  inputs: 
+     # Required arguments
+     Path: $(Build.SourcesDirectory)
+     VersionNumber: $(Build.BuildNumber)
+     VersionNameFormat: {1}.{2}
+     Injectversioncode: false
+     VersionCodeFormat: {3}
+     Injectversion: false
+     VersionRegex: \d+\.\d+\.\d+
+     FilenamePattern: AndroidManifest.xml
+     OutputVersion: OutputedVersion
 
 - task: AndroidSigning@3
   inputs:
