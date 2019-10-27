@@ -30,9 +30,9 @@ steps:
   inputs:
     apkFiles: '**/*.apk'
     apksignerKeystoreFile: './Scripts/KeyStore/*releaseeverywhere.keystore'
-    apksignerKeystorePassword: '123456'
+    apksignerKeystorePassword: '%APKPASSWORD%'
     apksignerKeystoreAlias: 'ReleaseEverywhereBuildOnce'
-    apksignerKeyPassword: '123456'
+    apksignerKeyPassword: '%APKPASSWORD%'
 
 - task: CopyFiles@2
   inputs:
