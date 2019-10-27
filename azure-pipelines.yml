@@ -47,26 +47,29 @@ steps:
 
 # Copy Keystore
 - task: CopyFiles@2
+  displayName: 'Copy Keystore to: $(Build.ArtifactStagingDirectory)'
   inputs:
     SourceFolder: '$(Build.SourcesDirectory)/Scripts/KeyStore/'
     Contents: 'com.causerexception.releaseeverywhere.keystore'
-    TargetFolder: '$(build.artifactStagingDirectory)/Drop'
+    TargetFolder: '$(build.artifactstagingdirectory)'
     OverWrite: true
 
 #Copy Scripts
 - task: CopyFiles@2
+  displayName: 'Copy Scripts to: $(Build.ArtifactStagingDirectory)'
   inputs:
     SourceFolder: '$(Build.SourcesDirectory)/Scripts/'
     Contents: 'Change_Config_APK.sh'
-    TargetFolder: '$(build.artifactStagingDirectory)/Drop'
+    TargetFolder: '$(build.artifactstagingdirectory)'
     OverWrite: true
 
 # Copy APK
 - task: CopyFiles@2
+  displayName: 'Copy APK to: $(Build.ArtifactStagingDirectory)'
   inputs:
-    SourceFolder: '$(Build.BinariesDirectory)/'
+    SourceFolder: '$(Build.BinariesDirectory)/Release/'
     Contents: 'com.causerexception.releaseeverywhere.apk'
-    TargetFolder: '$(build.artifactStagingDirectory)/Drop'
+    TargetFolder: '$(build.artifactstagingdirectory)'
     OverWrite: true
 
 
