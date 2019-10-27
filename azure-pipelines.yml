@@ -30,7 +30,7 @@ steps:
 - task: XamarinAndroid@1
   inputs:
     projectFile: '**/*droid*.csproj'
-    outputDirectory: '$(outputDirectory)'
+    outputDirectory: '$(build.binariesDirectory)'
     configuration: '$(buildConfiguration)'
 
 - task: DownloadSecureFile@1
@@ -67,7 +67,7 @@ steps:
 - task: CopyFiles@2
   displayName: 'Copy APK to: $(Build.ArtifactStagingDirectory)'
   inputs:
-    SourceFolder: '**/com.causerexception.releaseeverywhere.apk'
+    SourceFolder: '$(build.binariesDirectory)/*.apk'
     Contents: 'com.causerexception.releaseeverywhere.apk'
     TargetFolder: '$(build.artifactstagingdirectory)'
     OverWrite: true
