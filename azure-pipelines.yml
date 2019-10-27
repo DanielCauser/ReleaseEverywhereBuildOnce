@@ -34,7 +34,7 @@ steps:
     apksignerKeystoreAlias: 'ReleaseEverywhereBuildOnce'
     apksignerKeyPassword: '123456'
 
-- task: CopyAPKs@1
+- task: CopyFiles@2
   inputs:
     SourceFolder: '$(Build.SourcesDirectory)'
     Contents: '**/*.apk'
