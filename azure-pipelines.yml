@@ -32,10 +32,10 @@ steps:
 
 - task: AndroidSigning@3
   inputs:
-    apkFiles: '**/*.apk'
+    apkFiles: '**/com.causerexception.releaseeverywhere.apk'
     apksignerKeystoreFile: 'com.causerexception.releaseeverywhere.keystore'
     apksignerKeystorePassword: '123456'
-    apksignerKeystoreAlias: 'ReleaseEverywhereBuildOnce'
+    apksignerKeystoreAlias: ''
     apksignerKeyPassword: '123456'
 
 - task: CopyFiles@2
