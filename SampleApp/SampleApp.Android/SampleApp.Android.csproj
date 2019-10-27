@@ -46,7 +46,6 @@
     <WarningLevel>4</WarningLevel>
     <AndroidManagedSymbols>true</AndroidManagedSymbols>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
-    <AndroidCreatePackagePerAbi>true</AndroidCreatePackagePerAbi>
     <AndroidHttpClientHandlerType>Xamarin.Android.Net.AndroidClientHandler</AndroidHttpClientHandlerType>
     <AndroidUseAapt2>true</AndroidUseAapt2>
     <AndroidDexTool>d8</AndroidDexTool>
