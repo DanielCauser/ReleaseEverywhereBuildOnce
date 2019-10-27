@@ -22,7 +22,7 @@ steps:
 
 - task: android-manifest-version@1
   inputs:
-    sourcePath: '**/*AndroidManifest.xml'
+    sourcePath: '/SampleApp/SampleApp.Android/Properties/AndroidManifest.xml'
     versionCodeOption: 'buildid'
     versionCode: '$(Build.BuildId)'
     printFile: true
