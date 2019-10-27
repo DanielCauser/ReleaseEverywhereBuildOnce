@@ -45,14 +45,6 @@ steps:
     apksignerKeystoreAlias: 'com.causerexception.releaseeverywhere'
     apksignerKeyPassword: '123456'
 
-# Copy APK
-- task: CopyFiles@2
-  inputs:
-    SourceFolder: '$(build.binariesdirectory)'
-    Contents: '**/*.apk'
-    TargetFolder: '$(build.artifactStagingDirectory)/Drop'
-    OverWrite: true
-
 # Copy Keystore
 - task: CopyFiles@2
   inputs:
@@ -68,5 +60,15 @@ steps:
     Contents: 'Change_Config_APK.sh'
     TargetFolder: '$(build.artifactStagingDirectory)/Drop'
     OverWrite: true
+
+# Copy APK
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '$(Build.BinariesDirectory)'
+    Contents: 'com.causerexception.releaseeverywhere.apk'
+    TargetFolder: '$(build.artifactStagingDirectory)/Drop'
+    OverWrite: true
+
+
 
 
