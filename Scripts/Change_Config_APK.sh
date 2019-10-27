@@ -58,18 +58,13 @@ if [[ ${playStoreRelease} != 'true' ]] ; then
     echo "    rename package to [${newPackageName}]"
     xml ed --inplace -u "/manifest/@package" -v "${newPackageName}" AndroidManifest.xml
 
-    oldAuthorityName=$(xml sel -t -v "/manifest/application/provider[1]/@android:authorities" AndroidManifest.xml)
-    newAuthorityName="${newPackageName}.fileprovider"
-    echo "    rename first authority to [${newAuthorityName}]"
-    xml ed --inplace -u "/manifest/application/provider[1]/@android:authorities" -v "${newAuthorityName}" AndroidManifest.xml
-
     oldAuthorityName=$(xml sel -t -v "/manifest/application/provider[last()]/@android:authorities" AndroidManifest.xml)
     newAuthorityName=${oldAuthorityName//$oldPackageName/$newPackageName}
     echo "    rename last authority to [${newAuthorityName}]"
     xml ed --inplace -u "/manifest/application/provider[last()]/@android:authorities" -v "${newAuthorityName}" AndroidManifest.xml
 
     # newLabel="$(xml sel -t -v "/resources/string[@name='app_name']" res/values/strings.xml) ${envName}"
-    echo "    rename android:label to [${newLabel}]"
+    echo "    rename android:label to [${envName}]"
     xml ed --inplace -u "/resources/string[@name='app_name']" -v "${envName}" res/values/strings.xml  
 fi
 
