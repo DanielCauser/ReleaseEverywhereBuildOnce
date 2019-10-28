@@ -49,19 +49,19 @@ echo "Rename .keep to appsettings.json"
 mv "assets/$keepFile" "assets/appsettings.json"
 
 if [[ ${playStoreRelease} != 'true' ]] ; then
-    echo "Rename app for environment"
-    friendlyEnvironmentName=$(echo ${envName} | tr -s '[:space:]-[:space:]' '_' | tr '[:space:]' '_' | tr '[:upper:]' '[:lower:]' | sed -e 's/_*$//')
+    # echo "Rename app for environment"
+    # friendlyEnvironmentName=$(echo ${envName} | tr -s '[:space:]-[:space:]' '_' | tr '[:space:]' '_' | tr '[:upper:]' '[:lower:]' | sed -e 's/_*$//')
 
-    oldPackageName=$(xml sel -t -v "/manifest/@package" AndroidManifest.xml)
+    # oldPackageName=$(xml sel -t -v "/manifest/@package" AndroidManifest.xml)
 
-    newPackageName="$(xml sel -t -v "/manifest/@package" AndroidManifest.xml).${friendlyEnvironmentName}"
-    echo "    rename package to [${newPackageName}]"
-    xml ed --inplace -u "/manifest/@package" -v "${newPackageName}" AndroidManifest.xml
+    # newPackageName="$(xml sel -t -v "/manifest/@package" AndroidManifest.xml).${friendlyEnvironmentName}"
+    # echo "    rename package to [${newPackageName}]"
+    # xml ed --inplace -u "/manifest/@package" -v "${newPackageName}" AndroidManifest.xml
 
-    oldAuthorityName=$(xml sel -t -v "/manifest/application/provider[last()]/@android:authorities" AndroidManifest.xml)
-    newAuthorityName=${oldAuthorityName//$oldPackageName/$newPackageName}
-    echo "    rename last authority to [${newAuthorityName}]"
-    xml ed --inplace -u "/manifest/application/provider[last()]/@android:authorities" -v "${newAuthorityName}" AndroidManifest.xml
+    # oldAuthorityName=$(xml sel -t -v "/manifest/application/provider[last()]/@android:authorities" AndroidManifest.xml)
+    # newAuthorityName=${oldAuthorityName//$oldPackageName/$newPackageName}
+    # echo "    rename last authority to [${newAuthorityName}]"
+    # xml ed --inplace -u "/manifest/application/provider[last()]/@android:authorities" -v "${newAuthorityName}" AndroidManifest.xml
 
     # newLabel="$(xml sel -t -v "/resources/string[@name='app_name']" res/values/strings.xml) ${envName}"
     echo "    rename android:label to [${envName}]"
