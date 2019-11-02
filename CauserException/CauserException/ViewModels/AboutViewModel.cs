@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Newtonsoft.Json;
 using SampleApp.Config;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace CauserException.ViewModels
@@ -25,6 +26,13 @@ namespace CauserException.ViewModels
             set { SetProperty(ref _environmentConfig, value); }
         }
 
+        private string _appVersion;
+        public string AppVersion
+        {
+            get { return _appVersion; }
+            set { SetProperty(ref _appVersion, value); }
+        }
+
         public ICommand GetInfoCommand { get; }
 
         private async Task GetInfo()
@@ -39,10 +47,9 @@ namespace CauserException.ViewModels
                                            .ConfigureAwait(false);
 
                 EnvironmentConfig = result.Name;
-                return;
             }
 
-            EnvironmentConfig = "Failed";
+            AppVersion = VersionTracking.CurrentVersion;
         }
     }
 
