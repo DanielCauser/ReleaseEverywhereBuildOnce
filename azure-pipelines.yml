@@ -20,12 +20,12 @@ steps:
   inputs:
     restoreSolution: '**/*.sln'
 
-- task: android-manifest-version@1
-  inputs:
-    sourcePath: '$(Build.SourcesDirectory)/SampleApp/SampleApp.Android/Properties/AndroidManifest.xml'
-    versionCodeOption: 'buildid'
-    versionCode: '$(Build.BuildId)'
-    printFile: true
+# - task: android-manifest-version@1
+#   inputs:
+#     sourcePath: '$(Build.SourcesDirectory)/SampleApp/SampleApp.Android/Properties/AndroidManifest.xml'
+#     versionCodeOption: 'buildid'
+#     versionCode: '$(Build.BuildId)'
+#     printFile: true
 
 - task: XamarinAndroid@1
   inputs:
@@ -39,11 +39,13 @@ steps:
 
 - task: AndroidSigning@3
   inputs:
-    apkFiles: '**/com.causerexception.releaseeverywhere.apk'
+    apkFiles: '$(build.binariesdirectory)/Release/com.causerexception.releaseeverywhere.apk'
     apksignerKeystoreFile: 'com.causerexception.releaseeverywhere.keystore'
     apksignerKeystorePassword: '123456'
     apksignerKeystoreAlias: 'com.causerexception.releaseeverywhere'
     apksignerKeyPassword: '123456'
+
+    
 
 # Copy Keystore
 - task: CopyFiles@2
