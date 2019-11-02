@@ -15,8 +15,13 @@
     <Folder Include="BuildScripts\" />
   </ItemGroup>
   <ItemGroup>
-    <None Remove="Config\appsettings.json" />
     <None Remove="Config\appsettings.dev.json" />
+    <None Remove="Config\appsettings.json" />
     <None Remove="Config\appsettings.test.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Config\appsettings.dev.json" />
+    <EmbeddedResource Include="Config\appsettings.json" />
+    <EmbeddedResource Include="Config\appsettings.test.json" />
   </ItemGroup>
 </Project>
