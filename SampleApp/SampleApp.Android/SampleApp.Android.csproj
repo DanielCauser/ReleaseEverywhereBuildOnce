@@ -49,7 +49,6 @@
     <AndroidHttpClientHandlerType>Xamarin.Android.Net.AndroidClientHandler</AndroidHttpClientHandlerType>
     <AndroidDexTool>d8</AndroidDexTool>
     <AndroidSupportedAbis>x86;x86_64;arm64-v8a;armeabi-v7a</AndroidSupportedAbis>
-    <AndroidLinkSkip>Prism.Forms</AndroidLinkSkip>
     <AndroidUseAapt2>true</AndroidUseAapt2>
     <AndroidEnableMultiDex>true</AndroidEnableMultiDex>
     <AndroidTlsProvider>btls</AndroidTlsProvider>
