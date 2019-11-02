@@ -10,10 +10,10 @@ pool:
   vmImage: 'macos-latest'
 
 variables:
-  buildConfiguration: 'Release'
-  outputDirectory: '$(build.binariesDirectory)/$(buildConfiguration)'
+  - group: android-pipeline
 
 steps:
+
 - task: NuGetToolInstaller@1
 
 - task: NuGetCommand@2
@@ -39,12 +39,13 @@ steps:
 
 - task: AndroidSigning@3
   inputs:
-    apkFiles: '$(build.binariesdirectory)/Release/com.causerexception.releaseeverywhere.apk'
+    apkFiles: '**/*.apk'
     apksign: true
     apksignerKeystoreFile: 'com.causerexception.releaseeverywhere.keystore'
     apksignerKeystorePassword: '123456'
     apksignerKeystoreAlias: 'com.causerexception.releaseeverywhere'
     apksignerArguments: --out $(outputDirectory)/com.causerexception.releaseeverywhere.apk
+    apksignerKeyPassword: '123456'
     zipalign: true
 
 # Copy Keystore
