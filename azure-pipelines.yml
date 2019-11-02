@@ -10,7 +10,8 @@ pool:
   vmImage: 'macos-latest'
 
 variables:
-  - group: android-pipeline
+    buildConfiguration: 'Release'
+    outputDirectory: '$(build.binariesDirectory)/$(buildConfiguration)'
 
 steps:
 
