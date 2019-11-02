@@ -20,6 +20,13 @@ steps:
   inputs:
     restoreSolution: '**/*.sln'
 
+- task: android-manifest-version@1
+  inputs:
+    sourcePath: '$(Build.SourcesDirectory)/CauserException/CauserException.Android/Properties/AndroidManifest.xml'
+    versionCodeOption: 'buildid'
+    versionCode: '$(Build.BuildId)'
+    printFile: true
+
 - task: XamarinAndroid@1
   inputs:
     projectFile: '**/*CauserException.Android*.csproj'
