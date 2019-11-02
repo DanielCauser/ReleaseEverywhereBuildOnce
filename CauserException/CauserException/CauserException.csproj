@@ -8,5 +8,31 @@
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="4.2.0.709249" />  
     <PackageReference Include="Xamarin.Essentials" Version="1.2.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Remove="Views\ItemDetailPage.xaml" />
+    <EmbeddedResource Remove="Views\ItemsPage.xaml" />
+    <EmbeddedResource Remove="Views\MainPage.xaml" />
+    <EmbeddedResource Remove="Views\MenuPage.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Views\ItemDetailPage.xaml.cs" />
+    <Compile Remove="Views\ItemsPage.xaml.cs" />
+    <Compile Remove="Views\MainPage.xaml.cs" />
+    <Compile Remove="Views\MenuPage.xaml.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Config\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Config\appsettings.json" />
+    <None Remove="Config\appsettings.dev.json" />
+    <None Remove="Config\appsettings.test.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Config\appsettings.test.json" />
+    <EmbeddedResource Include="Config\appsettings.dev.json" />
+    <EmbeddedResource Include="Config\appsettings.json" />
   </ItemGroup>
 </Project>

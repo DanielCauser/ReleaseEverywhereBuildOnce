@@ -14,7 +14,7 @@ namespace CauserException
             InitializeComponent();
 
             DependencyService.Register<MockDataStore>();
-            MainPage = new MainPage();
+            MainPage = new AboutPage();
         }
 
         protected override void OnStart()
