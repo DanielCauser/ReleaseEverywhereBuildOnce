@@ -1,0 +1,75 @@
+# Xamarin.Android
+# Build a Xamarin.Android project.
+# Add steps that test, sign, and distribute an app, save build artifacts, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/xamarin
+
+trigger:
+- master
+
+pool:
+  vmImage: 'macos-latest'
+
+variables:
+  buildConfiguration: 'Release'
+  outputDirectory: '$(build.binariesDirectory)/$(buildConfiguration)'
+
+steps:
+- task: NuGetToolInstaller@1
+
+- task: NuGetCommand@2
+  inputs:
+    restoreSolution: '**/*.sln'
+
+- task: XamarinAndroid@1
+  inputs:
+    projectFile: '**/*CauserException.Android*.csproj'
+    outputDirectory: '$(outputDirectory)'
+    configuration: '$(buildConfiguration)'
+
+- task: DownloadSecureFile@1
+  inputs:
+    secureFile: 'com.sample.causerexception.keystore'
+
+- task: AndroidSigning@3
+  inputs:
+    apkFiles: '**/*.apk'
+    apksign: true
+    apksignerKeystoreFile: 'com.sample.causerexception.keystore'
+    apksignerKeystorePassword: '123456'
+    apksignerKeystoreAlias: 'com.sample.causerexception'
+    apksignerArguments: --out $(outputDirectory)/com.sample.causerexception.apk
+    apksignerKeyPassword: '123456'
+    zipalign: true
+
+# Copy Keystore
+- task: CopyFiles@2
+  displayName: 'Copy Keystore to: $(Build.ArtifactStagingDirectory)'
+  inputs:
+    SourceFolder: '$(Build.SourcesDirectory)/Scripts/KeyStore/'
+    Contents: 'com.sample.causerexception.keystore'
+    TargetFolder: '$(build.artifactstagingdirectory)'
+    OverWrite: true
+
+#Copy Scripts
+- task: CopyFiles@2
+  displayName: 'Copy Scripts to: $(Build.ArtifactStagingDirectory)'
+  inputs:
+    SourceFolder: '$(Build.SourcesDirectory)/Scripts/'
+    Contents: 'Change_Config_APK.sh'
+    TargetFolder: '$(build.artifactstagingdirectory)/Scripts'
+    OverWrite: true
+
+# Copy APK
+- task: CopyFiles@2
+  displayName: 'Copy APK to: $(Build.ArtifactStagingDirectory)'
+  inputs:
+    SourceFolder: '$(outputDirectory)'
+    Contents: '**/*.apk'
+    TargetFolder: '$(build.artifactstagingdirectory)/Release/'
+    OverWrite: true
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
