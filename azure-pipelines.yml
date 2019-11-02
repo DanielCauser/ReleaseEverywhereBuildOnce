@@ -71,7 +71,7 @@ steps:
 - task: CopyFiles@2
   displayName: 'Copy APK to: $(Build.ArtifactStagingDirectory)'
   inputs:
-    SourceFolder: '$(build.binariesdirectory)/Release'
+    SourceFolder: '$(outputDirectory)'
     Contents: '**/*.apk'
     TargetFolder: '$(build.artifactstagingdirectory)/Release/'
     OverWrite: true
