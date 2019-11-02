@@ -43,7 +43,6 @@ steps:
     apksignerKeystoreFile: 'com.causerexception.releaseeverywhere.keystore'
     apksignerKeystorePassword: '123456'
     apksignerKeystoreAlias: 'com.causerexception.releaseeverywhere'
-    apksignerKeyPassword: '123456'
 
     
 
