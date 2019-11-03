@@ -7,6 +7,7 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using SampleApp.Config;
+using CauserException.Config;
 
 namespace CauserException.Droid
 {
@@ -24,8 +25,15 @@ namespace CauserException.Droid
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
 
-            AppSettingsManager.Init();
+            InitPreloadDependencies();
         }
+
+        private void InitPreloadDependencies()
+        {
+            var configFile = Constants.CurrentEnvironment == AppEnvironment.Unspecified ? Constants.DefaultConfigPath : $"appsettings.{Constants.CurrentEnvironment}.json";
+            ConfigurationManagerDroid.Init(this, configFile);
+        }
+
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);

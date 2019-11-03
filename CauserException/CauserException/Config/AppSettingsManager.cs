@@ -9,32 +9,7 @@ namespace SampleApp.Config
     public class AppSettingsManager
     {
         private static AppSettingsManager _instance;
-        private JObject _secrets;
-        private const string Namespace = "CauserException.Config";
-#if DEBUG
-        private const string FileName = "appsettings.dev.json";
-#else
-        private const string FileName = "appsettings.json";
-#endif
-
-
-        private AppSettingsManager()
-        {
-            try
-            {
-                var assembly = IntrospectionExtensions.GetTypeInfo(typeof(AppSettingsManager)).Assembly;
-                var stream = assembly.GetManifestResourceStream($"{Namespace}.{FileName}");
-                using (var reader = new StreamReader(stream))
-                {
-                    var json = reader.ReadToEnd();
-                    _secrets = JObject.Parse(json);
-                }
-            }
-            catch (Exception)
-            {
-                Debug.WriteLine("Unable to load secrets file");
-            }
-        }
+        private static JObject _secrets;
 
         public static AppSettingsManager Settings
         {
@@ -49,10 +24,20 @@ namespace SampleApp.Config
             }
         }
 
-        public static void Init()
+        protected static void Init(Stream stream)
         {
-            _instance = new AppSettingsManager();
-
+            try
+            {
+                using (var reader = new StreamReader(stream))
+                {
+                    var json = reader.ReadToEnd();
+                    _secrets = JObject.Parse(json);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
 
         public string this[string name]
