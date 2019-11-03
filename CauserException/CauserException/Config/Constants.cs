@@ -14,7 +14,7 @@ namespace SampleApp.Config
 #if (DEBUG)
                 return AppEnvironment.dev;
 #else
-                return EnvironmentName.Unspecified;
+                return AppEnvironment.Unspecified;
 #endif
             }
         }
