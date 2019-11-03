@@ -49,6 +49,12 @@ namespace SampleApp.Config
             }
         }
 
+        public static void Init()
+        {
+            _instance = new AppSettingsManager();
+
+        }
+
         public string this[string name]
         {
             get
