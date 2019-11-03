@@ -1,10 +1,10 @@
 userName='danielcauser'
 root="/Users/${userName}/Projects/ReleaseEverywhereBuildOnce/Scripts/drop"
-packagePath="${root}/Release/com.causerexception.releaseeverywhere.apk"
+packagePath="${root}/Release/com.sample.causerexception.apk"
 # envName='Development'
 envName='Test'
-keystorePath="${root}/com.causerexception.releaseeverywhere.keystore"
-keystoreAlias='com.causerexception.releaseeverywhere'
+keystorePath="${root}/com.sample.causerexception.keystore"
+keystoreAlias='com.sample.causerexception'
 keystorePassword='123456'
 minSdkVersion=19
 

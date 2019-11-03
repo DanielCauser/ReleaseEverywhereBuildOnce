@@ -7,6 +7,7 @@ keystorePass=$5
 minSdkVersion=$6
 playStoreRelease=${7:-false}
 
+echo "Update - CAUSER"
 echo "PWD: $PWD"
 echo "apkPath: $apkPath"
 echo "envName: $envName"
