@@ -1,0 +1,25 @@
+name: CI on Push and Pull Request
+
+on: [push, pull_request]
+
+jobs:
+  Android:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Android
+      run: |
+        cd CauserException
+        nuget restore
+        cd CauserException.Android
+        msbuild CauserException.Android.csproj /verbosity:normal /t:Rebuild /p:Configuration=Debug
+        
+  iOS:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: iOS
+      run: |
+        cd CauserException
+        nuget restore
+        msbuild CauserException.iOS/CauserException.iOS.csproj /verbosity:normal /t:Rebuild /p:Platform=iPhoneSimulator /p:Configuration=Debug
